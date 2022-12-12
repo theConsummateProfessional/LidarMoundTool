@@ -1,2 +1,5 @@
-vevn/
+venv/
 pyvenv.cfg
+.idea
+/TrainingUtils/src/Lidar_Mound_Detector.egg-info
+/TrainingUtils/src/TrainingUtils/__pycache__/

@@ -10,7 +10,6 @@ class Converter:
         self.outputDir = outputDir
 
     def read_lazs_to_file_verbose(self):
-        directory = 'C:\\Users\\ethan\\Development\\LidarMoundWebsite\\lazs\\'
         for filename in os.listdir(self.inputDir):
             if filename.endswith('.laz'):
                 print(self.inputDir + filename)
@@ -54,10 +53,12 @@ def main():
     parser = ArgumentParser()
     parser.add_argument('-id', '--input_dir',
                         dest='input_dir',
-                        help='The directory that contains laz files')
+                        help='The directory that contains laz files',
+                        required=True)
     parser.add_argument('-od', '--output_dir',
                         dest='output_dir',
-                        help='The directory that will contain all output csv files')
+                        help='The directory that will contain all output csv files',
+                        required=True)
     parser.add_argument('-v', '--verbose',
                         action='store_true',
                         dest='verbose',
