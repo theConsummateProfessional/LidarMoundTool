@@ -35,7 +35,8 @@ setup(
     entrypoints= {
         'console_scripts': [
             'li-convert=TrainingUtils.converter:main',
-            'li-clean=TrainingUtils.clean_data:main'
+            'li-clean=TrainingUtils.clean_data:main',
+            'li-train=TrainingUtils.trainer:main'
         ]
     }
 )
