@@ -1,5 +1,3 @@
-import argparse
-
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split as tts
 import numpy as np
