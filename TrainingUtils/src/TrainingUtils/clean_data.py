@@ -18,7 +18,7 @@ class PlaneCalculations:
         return [self.p2[0] * -self.p1[0], self.p2[1] * -self.p1[1], self.p2[2] * -self.p1[2]]
 
     def Unit_Vector(self):
-        sub = numpy.subtract(self.p2, self.p1)
+        sub = numpy.subtract(self.p1, self.p2)
         return sub / numpy.linalg.norm(sub)
 
     def Calc_W(self):
@@ -28,8 +28,9 @@ class PlaneCalculations:
 
     def Calc_Theta(self):
         w = self.Calc_W()
-        n2 = self.Normal_Plane()
-        u = self.Reverse_Normal_Plane()
+        n2 = self.Reverse_Normal_Plane()
+        u = self.Normal_Plane()
+        # print("W: ", w, "n2: ", n2, "U: ", u)
         return math.atan(numpy.dot(w, n2) / numpy.dot(u, n2))
 
 
@@ -42,13 +43,14 @@ class Cleaner:
     def DataCleaner(self):
         for filename in os.listdir(self.inputDir):
             f = os.path.join(self.inputDir, filename)
+            print(f)
             if (os.path.isfile(f) and ".csv" in f):
                 mound_name = filename.replace(".csv", "")
                 df = pd.read_csv(f)
 
-                minX = min(df['X'])
-                minY = min(df['Y'])
-                minZ = min(df['Z'])
+                minX = min(df['x'])
+                minY = min(df['y'])
+                minZ = min(df['z'])
                 df['x'] = df['x'] - minX
                 df['y'] = df['y'] - minY
                 df['Z'] = df['z'] - minZ
@@ -106,15 +108,15 @@ class Cleaner:
 
                 n_bins = len(bins)
                 print(self.outputDir + mound_name)
-                plt.hist(alphas_normal, n_bins, density=True, hisstype='bar')
+                plt.hist(alphas_normal, n_bins, density=True, histtype='bar')
                 plt.savefig(self.outputDir + mound_name + '-alpha')
                 plt.close()
 
-                plt.hist(theta_normal, n_bins, density=True)
+                plt.hist(thetas_normal, n_bins, density=True, histtype='bar')
                 plt.savefig(self.outputDir + mound_name + '-theta')
                 plt.close()
 
-                plt.hist(phis_normal, n_bins, density=True)
+                plt.hist(phis_normal, n_bins, density=True, histtype='bar')
                 plt.savefig(self.outputDir + mound_name + '-phi')
                 plt.close()
 

@@ -11,9 +11,12 @@ PACKAGE_DATA = {}
 REQUIREMENTS = [
     'numpy',
     'pylas',
+    'laszip',
     'pandas',
     'matplotlib',
-    'sklearn'
+    'sklearn',
+    'scipy',
+    'scikit-learn'
 ]
 
 if os.name == 'nt':
@@ -32,7 +35,7 @@ setup(
     packages=find_namespace_packages(where='src'),
     install_requires=REQUIREMENTS,
     python_requires='>= 3.8.*',
-    entrypoints= {
+    entry_points= {
         'console_scripts': [
             'li-convert=TrainingUtils.converter:main',
             'li-clean=TrainingUtils.clean_data:main',

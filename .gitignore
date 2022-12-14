@@ -3,3 +3,7 @@ pyvenv.cfg
 .idea
 /TrainingUtils/src/Lidar_Mound_Detector.egg-info
 /TrainingUtils/src/TrainingUtils/__pycache__/
+/lazs
+/PNGs
+/HistCSVs
+/CSVs

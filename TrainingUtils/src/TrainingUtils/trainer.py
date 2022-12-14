@@ -23,7 +23,7 @@ class Tester:
         df = pd.read_csv(path)
         x_arr = df[["alphas", "theta", "phi"]].to_numpy()
 
-        if("Natural" in path):
+        if ("Natural" in path):
             y.append(0)
         else:
             y.append(1)
@@ -55,7 +55,8 @@ class Tester:
             zeros_length = biggest_list_length - list_length
             np_data[i] = np.concatenate((x, np.zeros(zeros_length)), axis=None)
 
-        data_train, data_test, labels_train, labels_test = tts(np_data, labels, test_size=self.testSize, random_state=self.randomState)
+        data_train, data_test, labels_train, labels_test = tts(np_data, labels, test_size=self.testSize,
+                                                               random_state=self.randomState)
         return data_train, data_test, labels_train, labels_test
 
     async def train_knn(self):
@@ -82,11 +83,13 @@ class Tester:
         plt.ylabel('Accuracy')
         plt.show()
 
+
 def check_positive_float(val):
     fvalue = float(val)
     if fvalue <= 0 and fvalue > 1:
         raise argparse.ArgumentTypeError("%s is an invalid positive float value" % val)
     return fvalue
+
 
 def check_positive_int(val):
     ivalue = int(val)
@@ -94,7 +97,8 @@ def check_positive_int(val):
         raise argparse.ArgumentTypeError('%s is an invalid positive int value' % val)
     return ivalue
 
-async def main():
+
+async def entry():
     parser = ArgumentParser()
     parser.add_argument('-id', '--input_dir',
                         dest='input_dir',
@@ -119,5 +123,10 @@ async def main():
     tester = Tester(input_dir, test_size, random_state)
     await tester.train_knn()
 
+
+def main():
+    asyncio.run(entry())
+
+
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
