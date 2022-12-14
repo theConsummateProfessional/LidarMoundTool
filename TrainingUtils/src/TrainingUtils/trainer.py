@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import os
 import asyncio
-from argparse import ArgumentParser
+import argparse
 import time
 
 LOW_NEIGHBOR = 1
@@ -99,7 +99,7 @@ def check_positive_int(val):
 
 
 async def entry():
-    parser = ArgumentParser()
+    parser = argparse.ArgumentParser()
     parser.add_argument('-id', '--input_dir',
                         dest='input_dir',
                         help='The directory that contains all csvs for mound data alphas, phis, thetas',
